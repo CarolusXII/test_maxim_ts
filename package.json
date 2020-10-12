@@ -1,0 +1,46 @@
+{
+  "name": "test_maxim_ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "webpack-dev-server --hot --config ./build/webpack.dev.config.js",
+    "build": "webpack --config ./build/webpack.build.config.js"
+  },
+  "author": "xii",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@mdi/font": "^5.5.55",
+    "css-loader": "^4.2.1",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.10.0",
+    "moment": "^2.27.0",
+    "sass": "^1.26.10",
+    "save": "^2.4.0",
+    "style-loader": "^1.2.1",
+    "vue": "^2.6.12",
+    "vue-class-component": "^7.2.6",
+    "vue-loader": "^15.9.3",
+    "vue-property-decorator": "^9.0.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.12",
+    "vuetify": "^2.3.10",
+    "vuex": "^3.5.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "html-webpack-plugin": "^4.3.0",
+    "material-design-icons-iconfont": "^6.1.0",
+    "sass-loader": "^9.0.3",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-merge": "^5.1.2"
+  }
+}
