@@ -11,7 +11,7 @@ const devtools: boolean = false;
 const store: StoreOptions<RootState> = {
   devtools,
   getters: {
-    getNotIntersectionArray: state => (_target_arr: Array<any> = [], _comparison_arr: Array<any> = [], _check_field: any = undefined) => {
+    getNotIntersectionArray: state => (_target_arr: Array<object> = [], _comparison_arr: Array<object> = [], _check_field: string = 'id'): Array<object> => {
       let target_arr = [].concat(_target_arr), comparison_arr = [].concat(_comparison_arr);
       if (_check_field !== undefined) {
         return target_arr.filter(ta => comparison_arr.every(ca => ca[_check_field] !== ta[_check_field]));
@@ -19,8 +19,7 @@ const store: StoreOptions<RootState> = {
         return target_arr.filter(ta => comparison_arr.every(ca => ca !== ta));
       }
     },
-    getIntersectionArray: state => (_target_arr: Array<any> = [], _comparison_arr: Array<any> = [], _check_field: any = undefined) => {
-      console.log(2)
+    getIntersectionArray: state => (_target_arr: Array<object> = [], _comparison_arr: Array<object> = [], _check_field: string = 'id'): Array<object> => {
       let target_arr = [].concat(_target_arr), comparison_arr = [].concat(_comparison_arr);
       if (_check_field !== undefined) {
         return target_arr.filter(ta => comparison_arr.some(ca => ca[_check_field] === ta[_check_field]));

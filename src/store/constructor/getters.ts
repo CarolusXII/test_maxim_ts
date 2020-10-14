@@ -1,7 +1,16 @@
 import { GetterTree } from 'vuex';
 import { ConstructorState } from './types';
 import { RootState } from '../types';
+import { JSONDataElement, SelectedItemsElement, ConditionObj } from '../../components/types'
 
 export const getters: GetterTree<ConstructorState, RootState> = {
-
+  getJsonData: (state):Array<JSONDataElement> => {
+    return state.JSON_data;
+  },
+  getSelectedItems: (state):Array<SelectedItemsElement> => {
+    return state.selected_items;
+  },
+  getConditionSelectedItem: state => (id: string): ConditionObj  => {
+    return state.selected_items.find(si => si.code === id).condition;
+  }
 }

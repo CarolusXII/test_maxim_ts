@@ -27,22 +27,22 @@
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
-    import {Prop, Watch} from 'vue-property-decorator'
-    import { ArrayItem } from './types';
+    import { Prop, Watch, Model, Emit } from 'vue-property-decorator'
+    import { Getter } from 'vuex-class'
+    import { ArrayItem } from './types'
 
-    @Component({
-        model: {
-            prop: 'selected_items_init',
-            event: 'change-selected-items'
-        }
-    })
+    @Component({})
 
     export default class ElementPicker extends Vue {
+        @Model('change-selected-items', { type: Array }) selected_items_init: Array<ArrayItem>;
         @Prop({type: Array, default: () => [{}]}) items: Array<object>;
-        @Prop({type: Array, default: () => [{}]}) selected_items_init: Array<ArrayItem>;
         @Prop({type: String, default: () => 'id'}) item_value: string;
         @Prop({type: String, default: () => 'text'}) item_text: string;
         @Prop({type: String, default: () => ''}) readonly title: string;
+        @Emit('change-selected-items') changeSelectedItems(val: Array<object>) {
+            return val;
+        }
+        @Getter('getIntersectionArray') getIntersectionArray: any;
         selected_items: Array<ArrayItem> = [];
 
         init() {
@@ -72,10 +72,30 @@
                 }
             }
             if (flag) {
-                this.selected_items = this.$store.getters.getIntersectionArray(this.selected_items, new_val, this.item_value);
+                this.selected_items = this.getIntersectionArray(this.selected_items, new_val, this.item_value);
             }
+        }
+        @Watch('selected_items') selectedItemsWatcher(new_val: Array<ArrayItem>) {
+            this.changeSelectedItems(new_val);
         }
 
     }
 
 </script>
+
+<style lang="scss">
+  .element-picker {
+    .element-picker__item {
+      padding: 4px 8px;
+      cursor: pointer;
+      height: 40px;
+      &.element-picker__item--selected {
+        background-color: #ebebeb;
+      }
+      span {
+        user-select: none;
+        font-size: 18px;
+      }
+    }
+  }
+</style>
