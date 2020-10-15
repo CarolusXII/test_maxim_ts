@@ -27,4 +27,23 @@ export const actions: ActionTree<ConstructorState, RootState> = {
     let new_selected_items_val = rootGetters.getNotIntersectionArray(selected_items, _deactive_items, 'code');
     commit('setSelectedItems', new_selected_items_val);
   },
+  deleteElementFromJsonData: ({commit, dispatch, getters}, code: string) => {
+    //какие-то др действия, например, запрос
+    commit('removeElementFromJsonData', code);
+  },
+  saveEditJSONElement: async ({commit, dispatch}, json_element: JSONDataElement) => {
+    //какие-то др действия, например, запрос
+    let element = Object.assign({}, json_element);
+    if (element.code === undefined) {
+      delete element.code;
+      let payload = {
+        element,
+        index: await dispatch('getFreeIndex')
+      }
+      commit('addElementInJsonData', payload);
+    } else {
+      commit('updateElementInJsonData', element)
+    }
+    commit('closeModalEditJSONElement');
+  }
 }

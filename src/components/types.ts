@@ -10,7 +10,7 @@ export interface ElementsSelector {
 export interface JSONDataElement {
   caption: string;
   type: number;
-  code: string;
+  code?: string;
 }
 
 export interface ConditionObj {
@@ -31,14 +31,7 @@ export interface SelectedItemsElement {
   condition: ConditionObj;
 }
 
-export interface EditJsonDataElement {
-  title: string | undefined;
-  data: object;
-  modal: boolean
-}
-
-export interface EditJSONDataElementDataEmpty {
-  code: string;
-  caption: string;
-  type: string;
+export interface ModalEditJSONData {
+  modal: boolean;
+  headers_table: Array<object>
 }
