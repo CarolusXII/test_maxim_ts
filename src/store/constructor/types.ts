@@ -29,5 +29,6 @@ export interface ConstructorState {
     code: string | undefined;
     type: string | undefined;
   }
-  rules: ArrayItem
+  rules: ArrayItem;
+  modal_edit_json_data: boolean
 }

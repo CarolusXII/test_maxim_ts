@@ -35,5 +35,6 @@ export const state: ConstructorState = {
   },
   rules: {
     required_field: (v: any) => !!v || ''
-  }
+  },
+  modal_edit_json_data: false
 }

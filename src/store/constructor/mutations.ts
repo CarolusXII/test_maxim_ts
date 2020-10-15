@@ -33,5 +33,11 @@ export const mutations: MutationTree<ConstructorState> = {
   },
   removeElementFromJsonData: (state, code: string) => {
     state.JSON_data = state.JSON_data.filter(jdi => jdi.code != code);
+  },
+  showModalEditJsonData: state => {
+    state.modal_edit_json_data = true;
+  },
+  closeModalEditJsonData: state => {
+    state.modal_edit_json_data = false;
   }
 }
