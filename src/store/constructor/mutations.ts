@@ -20,7 +20,9 @@ export const mutations: MutationTree<ConstructorState> = {
   },
   closeModalEditJSONElement: state => {
     state.edit_json_data_element.modal = false;
-    state.edit_json_data_element.data = Object.assign({}, state.edit_json_data_element_data);
+    setTimeout(() => {
+      state.edit_json_data_element.data = Object.assign({}, state.edit_json_data_element_data);
+    }, 300)
   },
   addElementInJsonData: (state, payload: { element: JSONDataElement; index: number }) => {
     payload.element['code'] = `field${payload.index}`;
@@ -78,7 +80,9 @@ export const mutations: MutationTree<ConstructorState> = {
   },
   closeModalEditSettings: state => {
     state.edit_settings.modal = false;
-    state.edit_settings.data = {};
-    state.edit_settings.condition_data = {};
+    setTimeout(() => {
+      state.edit_settings.data = {};
+      state.edit_settings.condition_data = {};
+    }, 300)
   }
 }
