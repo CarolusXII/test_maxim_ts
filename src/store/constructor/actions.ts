@@ -31,8 +31,14 @@ export const actions: ActionTree<ConstructorState, RootState> = {
     //какие-то др действия, например, запрос
     commit('removeElementFromJsonData', code);
   },
+  getFreeIndex: async ({getters}) => {
+    let index = 0;
+    while (getters.getJsonData.some((i: ArrayItem) => i.code.replace('field', '') == index)) {
+      index++;
+    }
+    return index;
+  },
   saveEditJSONElement: async ({commit, dispatch}, json_element: JSONDataElement) => {
-    //какие-то др действия, например, запрос
     let element = Object.assign({}, json_element);
     if (element.code === undefined) {
       delete element.code;
@@ -44,6 +50,5 @@ export const actions: ActionTree<ConstructorState, RootState> = {
     } else {
       commit('updateElementInJsonData', element)
     }
-    commit('closeModalEditJSONElement');
   }
 }

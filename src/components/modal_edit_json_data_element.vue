@@ -40,14 +40,14 @@
               <v-spacer></v-spacer>
               <v-col class="fix-flex">
                 <v-btn
-                  @click="closeModalEditJsonElement"
+                  @click="closeModal"
                 >
                   <v-icon>clear</v-icon>
                 </v-btn>
               </v-col>
               <v-col class="fix-flex">
                 <v-btn
-                  @click="saveEditJsonElement"
+                  @click="saveElement"
                 >
                   <v-icon>done</v-icon>
                 </v-btn>
@@ -78,15 +78,16 @@
         @Mutation('closeModalEditJSONElement', {namespace}) closeModalEditJSONElement: any;
         @Action('saveEditJSONElement', {namespace}) saveEditJSONElement: any;
 
-        closeModalEditJsonElement() {
-            this.closeModalEditJSONElement();
-            (this.$refs.form_edit_json_data_element as Vue & { resetValidation: () => boolean }).resetValidation();
-        }
-
-        saveEditJsonElement() {
+        saveElement() {
             if ((this.$refs.form_edit_json_data_element as Vue & { validate: () => boolean }).validate()) {
                 this.saveEditJSONElement(this.edit_json_data_element.data);
+                this.closeModal();
             }
+        }
+
+        closeModal() {
+            this.closeModalEditJSONElement();
+            (this.$refs.form_edit_json_data_element as Vue & { resetValidation: () => boolean }).resetValidation();
         }
     }
 

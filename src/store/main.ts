@@ -3,7 +3,6 @@ import Vuex, { StoreOptions } from 'vuex'
 import { RootState } from "./types";
 
 import { constructor } from './constructor/main'
-import { ArrayItem } from '../components/types'
 
 Vue.use(Vuex)
 
@@ -27,15 +26,6 @@ const store: StoreOptions<RootState> = {
       } else {
         return target_arr.filter(ta => comparison_arr.some(ca => ca === ta));
       }
-    }
-  },
-  actions: {
-    getFreeIndex: async ({getters}) => {
-      let index = 0;
-      while (getters.getJsonData.some((i: ArrayItem) => i.code.replace('field', '') == index)) {
-        index++;
-      }
-      return index;
     }
   },
   modules: {

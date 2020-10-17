@@ -17,7 +17,6 @@ export const state: ConstructorState = {
       condition: ['eq']
     }
   },
-
   edit_json_data_element: {
     title: undefined,
     data: {
@@ -34,7 +33,14 @@ export const state: ConstructorState = {
     type: undefined
   },
   rules: {
-    required_field: (v: any) => !!v || ''
+    required_field: (v: any) => !!v || '',
+    required_arr: (v: []) => v.length > 0 || ''
   },
-  modal_edit_json_data: false
+  modal_edit_json_data: false,
+
+  edit_settings: {
+    modal: false,
+    data: {},
+    condition_data: {}
+  }
 }

@@ -27,5 +27,16 @@ export const getters: GetterTree<ConstructorState, RootState> = {
   },
   getModalEditJsonData: state => {
     return state.modal_edit_json_data;
+  },
+  getEditSettings: state => {
+    return state.edit_settings;
+  },
+  getRequestData: (state): Array<{code_name: string; value: number | string}> => {
+    return state.selected_items.map(si => {
+      return {
+        code_name: si.code,
+        value: si.value
+      }
+    })
   }
 }

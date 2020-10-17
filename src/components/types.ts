@@ -1,5 +1,11 @@
 export interface ArrayItem {
-  [index: string]: any;
+  [key: string]: any;
+}
+
+export interface JSONDataElement {
+  caption: string;
+  type: string;
+  code?: string;
 }
 
 export interface ElementsSelector {
@@ -7,13 +13,8 @@ export interface ElementsSelector {
   deactive_items: Array<JSONDataElement>
 }
 
-export interface JSONDataElement {
-  caption: string;
-  type: number;
-  code?: string;
-}
-
 export interface ConditionObj {
+  [key: string]: string | number | boolean;
   gt?: number;
   lt?: number;
   gte?: number;
@@ -31,7 +32,8 @@ export interface SelectedItemsElement {
   condition: ConditionObj;
 }
 
-export interface ModalEditJSONData {
-  modal: boolean;
-  headers_table: Array<object>
+export interface ValidationData {
+  [key: string]: {
+    [key: string]: Function;
+  }
 }

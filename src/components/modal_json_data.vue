@@ -57,7 +57,7 @@
   import Vue from 'vue'
   import Component from "vue-class-component";
   import { Getter, Action, Mutation } from "vuex-class";
-  import { ModalEditJSONData, JSONDataElement } from "./types";
+  import { JSONDataElement } from "./types";
 
   const namespace = 'constructor';
 

@@ -45,10 +45,10 @@
         @Getter('getIntersectionArray') getIntersectionArray: any;
         selected_items: Array<ArrayItem> = [];
 
-        init() {
+        init(): void {
             this.selected_items = this.selected_items_init;
         }
-        toggleItem(item_data: ArrayItem) {
+        toggleItem(item_data: ArrayItem): void {
             if (this.selected_items.find((si: ArrayItem) => si[this.item_value] === item_data[this.item_value])) {
                 this.selected_items = this.selected_items.filter(i => i[this.item_value] !== item_data[this.item_value]);
             } else {

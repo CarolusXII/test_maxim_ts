@@ -2,7 +2,7 @@
   <v-col cols="12" sm="12" md="10" lg="8" v-resize="resize">
     <modal-json-data></modal-json-data>
     <modal-edit-json-data-element></modal-edit-json-data-element>
-
+    <edit-settings></edit-settings>
     <v-row>
       <v-spacer></v-spacer>
       <v-col class="fix-flex">
@@ -49,7 +49,7 @@
       <v-col cols="12" sm="5">
         <element-picker
           title="Выбранные фильтры"
-          :items="getIntersectionArray(JSON_data, selected_items,'code')"
+          :items="getIntersectionArray(JSON_data, selected_items, 'code')"
           v-model="elements_selector.deactive_items"
           item_value="code"
           item_text="caption"
@@ -82,6 +82,8 @@
         </element-picker>
       </v-col>
     </v-row>
+    <user-form></user-form>
+    <request-data></request-data>
   </v-col>
 </template>
 
@@ -91,6 +93,9 @@
     import ElementPicker from './element_picker.vue'
     import ModalEditJsonDataElement from './modal_edit_json_data_element.vue'
     import ModalJsonData from './modal_json_data.vue'
+    import EditSettings from './edit_settings.vue'
+    import UserForm from './user_form.vue'
+    import RequestData from './request_data.vue'
     import {Watch} from 'vue-property-decorator'
     import {Getter, Action, Mutation} from 'vuex-class'
     import {
@@ -106,7 +111,10 @@
         components: {
             ElementPicker,
             ModalEditJsonDataElement,
-            ModalJsonData
+            ModalJsonData,
+            EditSettings,
+            UserForm,
+            RequestData
         }
     })
     export default class Constructor extends Vue {
@@ -114,16 +122,12 @@
         @Action('getSelectedItemsFromLS', {namespace}) getSelectedItemsFromLS: any;
         @Action('addSelectedItems', {namespace}) addSelectedItems: any;
         @Action('cutSelectedItems', {namespace}) cutSelectedItems: any;
-
         @Mutation('showModalEditJsonData', {namespace}) showModalEditJsonData: any;
-
-        // @Action('deleteElementFromJsonData', {namespace}) deleteElementFromJsonData: any;
+        @Mutation('showModalEditSettings', {namespace}) showModalEditSettings: any;
         @Getter('getSelectedItems', {namespace}) selected_items: Array<SelectedItemsElement>;
-        @Getter('getSelectedItem', {namespace}) getSelectedItem: any;
         @Getter('getJsonData', {namespace}) JSON_data: Array<JSONDataElement>;
         @Getter('getIntersectionArray') getIntersectionArray: Array<JSONDataElement>;
         @Getter('getNotIntersectionArray') getNotIntersectionArray: Array<JSONDataElement>;
-
         @Getter('getConditionSelectedItem', {namespace}) getConditionSelectedItem: ConditionObj;
 
         @Watch('JSON_data', {deep: true}) JSON_data_watcher(new_val: Array<JSONDataElement>) {
@@ -146,7 +150,6 @@
 
 
         init(): void {
-            console.log('init()');
             this.getDataFromLS();
             this.getSelectedItemsFromLS();
         }
@@ -157,4 +160,24 @@
 
     }
 </script>
+
+<style lang="scss">
+  .table--fix-icons tr td:last-child .v-icon {
+    font-size: 20px !important;
+
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+
+  form.v-form {
+    width: 100%;
+  }
+
+  @media (max-width: 599px) {
+    .buttons-action-wrapper {
+      flex-wrap: nowrap !important;
+    }
+  }
+</style>
 
