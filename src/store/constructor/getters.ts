@@ -22,8 +22,8 @@ export const getters: GetterTree<ConstructorState, RootState> = {
   getEditJSONDataElement: state => {
     return state.edit_json_data_element;
   },
-  getRules: state => (type: string) => {
-    return state.rules[type] === undefined ? () => {} : state.rules[type];
+  getRules: state => {
+    return state.rules;
   },
   getModalEditJsonData: state => {
     return state.modal_edit_json_data;

@@ -25,7 +25,7 @@
               <v-text-field
                 label="Название поля"
                 v-model="edit_json_data_element.data.caption"
-                :rules="[rules('required_field')]"
+                :rules="[rules.required_field]"
               ></v-text-field>
             </v-row>
             <v-row>
@@ -33,7 +33,7 @@
                 label="Тип данных"
                 :items="types"
                 v-model="edit_json_data_element.data.type"
-                :rules="[rules('required_field')]"
+                :rules="[rules.required_field]"
               ></v-select>
             </v-row>
             <v-row>
